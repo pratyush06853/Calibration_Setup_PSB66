@@ -120,8 +120,12 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
         }
 
         if_helium = 0;
+        if_first = 0;
+        if_second =0;
+        if_third =0;
         if_fourth = 0;
-        if_second = 0;
+        if_fifth = 0;
+        if_sixth = 0;
 
         // Select the tracks of interest
         for( size_t i=0; i < stepCollection.size(); ++i ){
