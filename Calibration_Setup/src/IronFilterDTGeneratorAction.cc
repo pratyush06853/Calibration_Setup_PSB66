@@ -130,8 +130,8 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //cout<<eventID<<endl;
   if(eventID ==0)
   {
-  //f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom37.root");
-  f = TFile::Open("/Users/pratyushpatel/Google_Drive/GraduateWork/Safety_DT/geom36/CombinedDTFridgelab_.root");
+  //f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom40.root");
+  f = TFile::Open("/Users/pratyushpatel/Google_Drive/GraduateWork/Safety_DT/MergedFiles/geom40/CombinedDTFridgelab_geom40.root");
   t1 = (TTree*)f->Get("IronFilter");
   nentries = (Int_t)t1->GetEntries();
 
@@ -173,7 +173,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //  particlename="neutron";
   //}
 
-  if (eventID==305346-1) {
+  if (eventID==70398-1) {
     f->Close();
   }
 
