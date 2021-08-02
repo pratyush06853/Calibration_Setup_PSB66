@@ -540,7 +540,8 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4double OneKShield_Radius = 15.65*cm;
   G4double OneKShield_Height = 0.881*m;
 
-  G4double DilutionUnit_Radius = 10.0*cm;
+  //G4double DilutionUnit_Radius = 10.0*cm;
+  G4double DilutionUnit_Radius = 5.0*cm;
   G4double DilutionUnit_Height = 5.0*cm;
 
   G4double DilutionChamber_Radius = 10.0*cm;
