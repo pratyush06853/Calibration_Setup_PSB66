@@ -727,28 +727,24 @@ G4LogicalVolume*  DilutionChamber_LV= new G4LogicalVolume(DilutionChamber_S, Cop
 //MixingPlate
 G4VSolid* MixingPlate_S = new G4Tubs( "MixingPlate", zeroRadius, MixingPlate_Radius, (MixingPlate_Thickness /2.0), startAngle, spanningAngle);
 G4LogicalVolume *MixingPlate_LV = new G4LogicalVolume( MixingPlate_S, Copper, "MixingPlate" );
-//G4LogicalVolume *MixingPlate_LV = new G4LogicalVolume( MixingPlate_S, Germanium, "MixingPlate" );
 MixingPlate_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0, 0, MixingPlate_z),MixingPlate_LV, "MixingPlate", vacuum_solid_LV, false, 0, fCheckOverlaps);
 MixingPlate_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
 //ColdPlate2
 G4VSolid* ColdPlate2_S = new G4Tubs( "ColdPlate2", zeroRadius, ColdPlate2_Radius, (ColdPlate2_Thickness /2.0), startAngle, spanningAngle);
 G4LogicalVolume *ColdPlate2_LV = new G4LogicalVolume( ColdPlate2_S, Copper, "ColdPlate2" );
-//G4LogicalVolume *ColdPlate2_LV = new G4LogicalVolume( ColdPlate2_S, Germanium, "ColdPlate2" );
 ColdPlate2_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_z),ColdPlate2_LV, "ColdPlate2", vacuum_solid_LV, false, 0, fCheckOverlaps);
 ColdPlate2_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
 //ColdPlate1
 G4VSolid* ColdPlate1_S = new G4Tubs( "ColdPlate1", zeroRadius, ColdPlate1_Radius, (ColdPlate1_Thickness /2.0), startAngle, spanningAngle);
 G4LogicalVolume *ColdPlate1_LV = new G4LogicalVolume( ColdPlate1_S, Copper, "ColdPlate1" );
-//G4LogicalVolume *ColdPlate1_LV = new G4LogicalVolume( ColdPlate1_S, Germanium, "ColdPlate1" );
 ColdPlate1_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_z+ColdPlate1_z),ColdPlate1_LV, "ColdPlate1", vacuum_solid_LV, false, 0, fCheckOverlaps);
 ColdPlate1_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
 //OneKPlate
 G4VSolid* OneKPlate_S = new G4Tubs( "OneKPlate", zeroRadius, OneKPlate_Radius, (OneKPlate_Thickness /2.0), startAngle, spanningAngle);
 G4LogicalVolume *OneKPlate_LV = new G4LogicalVolume( OneKPlate_S, Copper, "OneKPlate" );
-//G4LogicalVolume *OneKPlate_LV = new G4LogicalVolume( OneKPlate_S, Germanium, "OneKPlate" );
 OneKPlate_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_z+ColdPlate1_z+OneKPlate_z),OneKPlate_LV, "OneKPlate", vacuum_solid_LV, false, 0, fCheckOverlaps);
 OneKPlate_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
@@ -758,14 +754,14 @@ G4double ro[4]= {OneKShield_Radius+OneKShield_Width, OneKShield_Radius+OneKShiel
 G4ThreeVector position_OneKShield = G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_z+ColdPlate1_z+OneKPlate_z) + G4ThreeVector(0, 0, -OneKPlate_Thickness/2-OneKShield_Height);
 
 G4Polycone* OneKShield_S = new G4Polycone("OneKShield", startAngle, spanningAngle, 4, z, ri, ro);
-G4LogicalVolume*  OneKShield_LV= new G4LogicalVolume(OneKShield_S, Copper, "OneKShield");
+//G4LogicalVolume*  OneKShield_LV= new G4LogicalVolume(OneKShield_S, Copper, "OneKShield");
+G4LogicalVolume*  OneKShield_LV= new G4LogicalVolume(OneKShield_S, Aluminum, "OneKShield");
 OneKShield_PV = new G4PVPlacement(NO_ROT, position_OneKShield , OneKShield_LV, "OneKShield", vacuum_solid_LV, false, 0, fCheckOverlaps);
 OneKShield_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
 //FourKPlate
 G4VSolid* FourKPlate_S = new G4Tubs( "FourKPlate", zeroRadius, FourKPlate_Radius, (FourKPlate_Thickness/2.0), startAngle, spanningAngle);
 G4LogicalVolume *FourKPlate_LV = new G4LogicalVolume( FourKPlate_S, Copper, "FourKPlate" );
-//G4LogicalVolume *FourKPlate_LV = new G4LogicalVolume( FourKPlate_S, Germanium, "FourKPlate" );
 FourKPlate_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_z+ColdPlate1_z+OneKPlate_z+FourKPlate_z),FourKPlate_LV, "FourKPlate", vacuum_solid_LV, false, 0, fCheckOverlaps);
 FourKPlate_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
@@ -776,7 +772,8 @@ G4double ro1[4]= {FourKShield_Radius+FourKShield_Width, FourKShield_Radius+FourK
 G4ThreeVector position_FourKShield = G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_z+ColdPlate1_z+OneKPlate_z+FourKPlate_z) + G4ThreeVector(0, 0, -FourKPlate_Thickness/2-FourKShield_Height);
 
 G4Polycone* FourKShield_S = new G4Polycone("FourKShield", startAngle, spanningAngle, 4, z1, ri1, ro1);
-G4LogicalVolume*  FourKShield_LV= new G4LogicalVolume(FourKShield_S, Copper, "FourKShield");
+//G4LogicalVolume*  FourKShield_LV= new G4LogicalVolume(FourKShield_S, Copper, "FourKShield");
+G4LogicalVolume*  FourKShield_LV= new G4LogicalVolume(FourKShield_S, Aluminum, "FourKShield");
 FourKShield_PV = new G4PVPlacement(NO_ROT, position_FourKShield , FourKShield_LV, "FourKShield", vacuum_solid_LV, false, 0, fCheckOverlaps);
 FourKShield_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
@@ -784,7 +781,6 @@ FourKShield_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 //SeventyKPlate
 G4VSolid* SeventyKPlate_S = new G4Tubs( "SeventyKPlate", zeroRadius, SeventyKPlate_Radius, (SeventyKPlate_Thickness /2.0), startAngle, spanningAngle);
 G4LogicalVolume *SeventyKPlate_LV = new G4LogicalVolume( SeventyKPlate_S, Copper, "SeventyKPlate" );
-//G4LogicalVolume *SeventyKPlate_LV = new G4LogicalVolume( SeventyKPlate_S, Germanium, "SeventyKPlate" );
 SeventyKPlate_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_z+ColdPlate1_z+OneKPlate_z+FourKPlate_z+SeventyKPlate_z),SeventyKPlate_LV, "SeventyKPlate", vacuum_solid_LV, false, 0, fCheckOverlaps);
 SeventyKPlate_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
@@ -795,10 +791,11 @@ G4double ro2[4]= {SeventyKShield_Radius+SeventyKShield_Width, SeventyKShield_Rad
 G4ThreeVector position_SeventyKShield = G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_z+ColdPlate1_z+OneKPlate_z+FourKPlate_z+SeventyKPlate_z) + G4ThreeVector(0, 0, -SeventyKPlate_Thickness/2-SeventyKShield_Height);
 
 G4Polycone* SeventyKShield_S = new G4Polycone("SeventyKShield", startAngle, spanningAngle, 4, z2, ri2, ro2);
-G4LogicalVolume*  SeventyKShield_LV= new G4LogicalVolume(SeventyKShield_S, Copper, "SeventyKShield");
-//SeventyKShield_PV = new G4PVPlacement(NO_ROT, position_SeventyKShield , SeventyKShield_LV, "SeventyKShield", vacuum_solid_LV, false, 0, fCheckOverlaps);
+//G4LogicalVolume*  SeventyKShield_LV= new G4LogicalVolume(SeventyKShield_S, Copper, "SeventyKShield");
+G4LogicalVolume*  SeventyKShield_LV= new G4LogicalVolume(SeventyKShield_S, Aluminum, "SeventyKShield");
+SeventyKShield_PV = new G4PVPlacement(NO_ROT, position_SeventyKShield , SeventyKShield_LV, "SeventyKShield", vacuum_solid_LV, false, 0, fCheckOverlaps);
 SeventyKShield_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));;
-SeventyKShield_LV->SetVisAttributes(G4VisAttributes::Invisible);
+
 
 //OVC
 G4double z3[4]=  {-OVCShield_Width, 0.0, 0.0, OVCShield_Height};
@@ -808,7 +805,7 @@ G4ThreeVector position_OVCShield = G4ThreeVector(0, 0, MixingPlate_z+ColdPlate2_
 
 G4Polycone* OVCShield_S = new G4Polycone("OVCShield", startAngle, spanningAngle, 4, z3, ri3, ro3);
 G4LogicalVolume*  OVCShield_LV= new G4LogicalVolume(OVCShield_S, Aluminum, "OVCShield");
-//OVCShield_PV = new G4PVPlacement(NO_ROT, position_OVCShield , OVCShield_LV, "OVCShield", vacuum_solid_LV, false, 0, fCheckOverlaps);
+OVCShield_PV = new G4PVPlacement(NO_ROT, position_OVCShield , OVCShield_LV, "OVCShield", vacuum_solid_LV, false, 0, fCheckOverlaps);
 OVCShield_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Cyan())));
 OVCShield_LV->SetVisAttributes(G4VisAttributes::Invisible);
 
