@@ -545,8 +545,8 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4double DilutionUnit_Radius = 5.0*cm;
   G4double DilutionUnit_Height = 5.0*cm;
 
-  G4double DilutionChamber_Radius = 10.0*cm;
-  G4double DilutionChamber_Height = 15.3*cm;
+  G4double DilutionChamber_Radius = DilutionUnit_Radius;//10.0*cm
+  G4double DilutionChamber_Height = DilutionUnit_Height + 5.3*cm;//15.3*cm
   G4double DilutionChamber_Width = 2.0*mm;
   G4double DilutionChamber_bottomplate_thick = 5*mm;
   G4double DilutionChamber_upperplate_thick = 3*mm;
@@ -582,13 +582,16 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   //G4double shieldHeight = 400.*cm;
 
   //G4double moderatorRadius = 15.0*cm; //15
-  G4double Front_Moderator_Thickness=(1.0/2.0)*2.54*cm; //changes this
-  G4double Back_Moderator_Thickness=(1.0/2.0)*2.54*cm;
+  //G4double Front_Moderator_Thickness=(1.0/2.0)*2.54*cm; //changes this
+  //G4double Back_Moderator_Thickness=(1.0/2.0)*2.54*cm;
+  G4double Front_Moderator_Thickness=1.5*cm; //changes this
+  G4double Back_Moderator_Thickness=1.5*cm;
   //G4double Inner_Radius =30.0*cm;
   G4double Inner_Radius =30.0*cm;
   G4double Radial_thickness=10.0*cm;//10.0*cm;
-  G4double Mid_Acrylic_thickness=(4.0/4.0)*2.54*cm;
-  G4double EJ426_thickness=0.25*mm;
+  G4double Mid_Acrylic_thickness=2.5*cm;
+  //G4double Mid_Acrylic_thickness=(4.0/4.0)*2.54*cm;
+  G4double EJ426_thickness=0.25*2*mm;
   G4double BoratedPoly_thickness = 5.0*cm; //15
   //G4double shieldCapHeight= 15.0*cm;//5
   //G4double DilutionUnit_Radius = 10.0*cm;
@@ -719,8 +722,8 @@ G4ThreeVector position_DilutionChamber = G4ThreeVector(0, 0, 0);
 
 G4Polycone* DilutionChamber_S = new G4Polycone("DilutionChamber", startAngle, spanningAngle, 7, nedges, innerradius, outerradius);
 G4LogicalVolume*  DilutionChamber_LV= new G4LogicalVolume(DilutionChamber_S, Copper, "DilutionChamber");
-//DilutionChamber_PV = new G4PVPlacement(NO_ROT, position_DilutionChamber , DilutionChamber_LV, "DilutionChamber", vacuum_solid_LV, false, 0, fCheckOverlaps);
-//DilutionChamber_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
+DilutionChamber_PV = new G4PVPlacement(NO_ROT, position_DilutionChamber , DilutionChamber_LV, "DilutionChamber", vacuum_solid_LV, false, 0, fCheckOverlaps);
+DilutionChamber_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
 
 
@@ -864,7 +867,7 @@ OVCShield_LV->SetVisAttributes(G4VisAttributes::Invisible);
 
 
 //First detector, distance between the helium Cell and the Detector is given
-G4double first_detector_z =  30.0*cm;
+G4double first_detector_z =  45.0*cm;//30.0*cm
 shielding_lead_PV_2 = new G4PVPlacement(turnAlongX, G4ThreeVector(0., -(first_detector_z-(shieldHeight-Front_Moderator_Thickness)/2.0), 0.), shielding_lead_LV, "1stTitanium_Reflector_A", vacuum_solid_LV, false, 0, fCheckOverlaps);
 Iron_solid_PV_2 = new G4PVPlacement( turnAlongX, G4ThreeVector(0,-(first_detector_z+(shieldHeight-Back_Moderator_Thickness)/2.0),0), Iron_solid_LV, "1st_SiPM_A",vacuum_solid_LV,false, 0, fCheckOverlaps);
 
