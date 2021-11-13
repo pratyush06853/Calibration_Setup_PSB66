@@ -867,7 +867,7 @@ OVCShield_LV->SetVisAttributes(G4VisAttributes::Invisible);
 
 
 //First detector, distance between the helium Cell and the Detector is given
-G4double first_detector_z =  45.0*cm;//30.0*cm
+G4double first_detector_z =  30.0*cm;//45.0*cm
 shielding_lead_PV_2 = new G4PVPlacement(turnAlongX, G4ThreeVector(0., -(first_detector_z-(shieldHeight-Front_Moderator_Thickness)/2.0), 0.), shielding_lead_LV, "1stTitanium_Reflector_A", vacuum_solid_LV, false, 0, fCheckOverlaps);
 Iron_solid_PV_2 = new G4PVPlacement( turnAlongX, G4ThreeVector(0,-(first_detector_z+(shieldHeight-Back_Moderator_Thickness)/2.0),0), Iron_solid_LV, "1st_SiPM_A",vacuum_solid_LV,false, 0, fCheckOverlaps);
 
