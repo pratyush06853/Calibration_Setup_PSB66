@@ -486,7 +486,8 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 
 
   ///////////***********lab room************//////////////////
-  G4double colimator_length=26.0*cm;
+  //G4double colimator_length=26.0*cm;
+  G4double colimator_length=30.0*cm;
   G4double fFilterCellSpacing= 50.0*cm+26.0*cm;
 
   G4double Water_cylindercal_can_radius = 152.7175*cm;
