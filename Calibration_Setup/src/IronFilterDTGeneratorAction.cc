@@ -183,7 +183,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //if (eventID==148301-1) {
   //if (eventID==136922-1) {
   //if (eventID==128096-1) {
-  if (eventID==128096-1) {
+  if (eventID==96945-1) {
     f->Close();
   }
 
