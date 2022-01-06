@@ -8,7 +8,7 @@
 #/random/setSeeds 3250 8967
 
 /process/list
-/run/printProgress 1000
+/run/printProgress 200
 
 # Set the file name
 #/filename/setFilename HeliumCellIronFilterPbFLuFe_15_20_40_BackingDetector_6det_2types_30_20_0.root
@@ -48,4 +48,4 @@
 #/analysis/setFileName Sheilding_40_polbor10PC_20_Pb
 #/run/beamOn 100000
 #/run/beamOn 857 #iron_filter
-/run/beamOn 391483 #scandium_filter
+/run/beamOn 128096 #scandium_filter

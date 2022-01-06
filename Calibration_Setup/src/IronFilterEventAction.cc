@@ -215,7 +215,8 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
                 //                          <<"  "<<stepID
                 //                          <<"  "<<tmp_particle_name
                 //                          <<"  "<<tmp_volume_name
-                //                          <<"  "<<Eki-Ekf<<G4endl;
+                //                          <<"  "<<Eki-Ekf
+                //                          <<"   "<<global_time/1000<<G4endl; //time in µs 
 
                 data_tree->Fill();
               }

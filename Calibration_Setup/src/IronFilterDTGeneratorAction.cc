@@ -131,7 +131,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(eventID ==0)
   {
   f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom50.root");
-  //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom42/CombinedDTFridgelab_geom43.root");
+  //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom50/CombinedDTFridgelab_geom50.root");
   t1 = (TTree*)f->Get("IronFilter");
   nentries = (Int_t)t1->GetEntries();
 
@@ -142,11 +142,12 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   t1->SetBranchAddress("Xmom",&testxmom);
   t1->SetBranchAddress("Ymom",&testymom);
   t1->SetBranchAddress("Zmom",&testzmom);
+  t1->SetBranchAddress("Time",&testtime);
   //t1->SetBranchAddress("ParticleType",&testParticleID);
 
 }
 
-  G4double Energy,X,Y,Z,Px,Py,Pz,angle,ParticleID;
+  G4double Energy,X,Y,Z,Px,Py,Pz,angle,ParticleID,T;
   //G4String particlename="gamma";
   G4String particlename="neutron";
   G4ThreeVector neutronDirection;
@@ -165,6 +166,8 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   Px=testxmom;
   Py=testymom;
   Pz=testzmom;
+  T=testtime*ns;
+
   //ParticleID=testParticleID;
   //ParticleID=2112;
 
@@ -190,6 +193,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   // set particle parameters
   fParticleSource->SetParticleMomentumDirection(neutronDirection);
   fParticleSource->SetParticleEnergy(Energy);
+  fParticleSource->SetParticleTime(T);
   //cout<<Energy<<endl;
   //G4ParticleDefinition* particleDefinition = G4ParticleTable::GetParticleTable()->FindParticle("neutron");
   G4ParticleDefinition* particleDefinition = G4ParticleTable::GetParticleTable()->FindParticle(particlename);
