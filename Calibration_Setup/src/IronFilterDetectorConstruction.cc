@@ -487,12 +487,19 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 
   ///////////***********lab room************//////////////////
   //G4double colimator_length=26.0*cm;
-  G4double colimator_length=30.0*cm;
+  //G4double colimator_length=30.0*cm;
+  G4double colimator_length=35.0*cm;
   G4double fFilterCellSpacing= 50.0*cm+26.0*cm;
 
   G4double Water_cylindercal_can_radius = 152.7175*cm;
+  //G4double Water_cylindercal_can_height = 115.8875*cm;
+  //G4double ConcreteSupport_height = 80.0*cm;
+
+  G4double Water_cylindercal_can_radius_x = 30*cm+152.7175*cm;//152.7175*cm;
   G4double Water_cylindercal_can_height = 115.8875*cm;
-  G4double ConcreteSupport_height = 80.0*cm;
+  G4double ConcreteSupport_height = 90.0*cm;
+
+
   G4double DT_Ti_T_location = 207.5*mm;
   G4double Insulation_Thickness = 5*mm;
 
@@ -688,7 +695,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 
 
   //Insulation but this is actually a surface to see the neutrons coming out of the concrete and borated water
-  G4VSolid* Insulation_S = new G4Box("Insulation", Water_cylindercal_can_radius/2.0, delta/2.0, (Water_cylindercal_can_height+ConcreteSupport_height)/2.);
+  G4VSolid* Insulation_S = new G4Box("Insulation", Water_cylindercal_can_radius_x/2.0, delta/2.0, (Water_cylindercal_can_height+ConcreteSupport_height)/2.);
   G4LogicalVolume* Insulation_LV = new G4LogicalVolume(Insulation_S, Vacuum, "Insulation");
   Insulation_PV = new G4PVPlacement(NO_ROT, G4ThreeVector(0., fFilterCellSpacing-colimator_length-3*delta/2.0, (Water_cylindercal_can_height-ConcreteSupport_height)/2 - DT_Ti_T_location - Insulation_Thickness), Insulation_LV, "Insulation", vacuum_solid_LV, false, 0, fCheckOverlaps);
   Insulation_LV->SetVisAttributes(G4VisAttributes(G4Colour::Yellow()));
