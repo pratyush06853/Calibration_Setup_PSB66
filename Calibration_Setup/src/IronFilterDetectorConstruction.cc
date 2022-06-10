@@ -494,7 +494,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 
   G4double Side_shield_thickness=20.0*cm;
   //dimension main semicrcular lead
-  G4double thickness_Lead=18*cm;
+  G4double thickness_Lead=17*cm;
   G4double height_Lead=50*cm;
   G4double Scandium_diameter_limited=3.5*cm;//3.5*cm;
 
@@ -508,7 +508,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 
 
   G4double DT_Ti_T_location = 207.5*mm;
-  G4double Insulation_Thickness = 5*mm;
+  G4double Insulation_Thickness = 0.05*mm;
 
 
   G4double lab68_wall_thickness = 25.0*cm ;
