@@ -75,6 +75,7 @@ class IronFilterDetectorConstruction : public G4VUserDetectorConstruction
     const G4VPhysicalVolume* GetSeventyKPlatePV() const;
     const G4VPhysicalVolume* GetSeventyKShieldPV() const;
     const G4VPhysicalVolume* GetOVCShieldPV() const;
+    const G4VPhysicalVolume* GetBucketShieldingLeadPV() const;
 
     //1st Detector type A
     const G4VPhysicalVolume* GetshieldingleadPV2() const;
@@ -161,6 +162,7 @@ class IronFilterDetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* SeventyKPlate_PV;
     G4VPhysicalVolume* SeventyKShield_PV;
     G4VPhysicalVolume* OVCShield_PV;
+    G4VPhysicalVolume* BucketShielding_Lead_PV;
 
     //1st Detector type A
     G4VPhysicalVolume* shielding_lead_PV_2;
@@ -484,6 +486,10 @@ inline const G4VPhysicalVolume* IronFilterDetectorConstruction::GetOVCShieldPV()
   return OVCShield_PV;
 }
 
+
+inline const G4VPhysicalVolume* IronFilterDetectorConstruction::GetBucketShieldingLeadPV() const {
+  return BucketShielding_Lead_PV;
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
