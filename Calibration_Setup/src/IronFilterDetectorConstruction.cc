@@ -666,7 +666,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4LogicalVolume* vacuum_solid_LV = new G4LogicalVolume(vacuum_solid, Vacuum, "vacuum_solid");
   G4VPhysicalVolume* vacuum_solid_PV = new G4PVPlacement(NO_ROT, G4ThreeVector(), vacuum_solid_LV, "Vacuum_solid", 0, false, 0, fCheckOverlaps);
 
-/*
+
   //Lab66
   G4VSolid* Main_2_S = new G4Box("Main_2_solid", lab68_wall_x/2.0, lab68_wall_y/2.0 , lab68_wall_z/2.0);
   G4VSolid* hole_2_S = new G4Box("hole_2_solid", (lab68_wall_x-lab68_wall_thickness)/2.0, (lab68_wall_y-2*lab68_wall_thickness)/2.0, (lab68_wall_z-2*lab68_wall_thickness)/2.0);
