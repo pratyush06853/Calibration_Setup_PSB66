@@ -52,6 +52,7 @@
 
 
 #include "IronFilterDTGeneratorAction.hh"
+#include "IronFilterDTGeneratorMessenger.hh"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -83,7 +84,9 @@ IronFilterDTGeneratorAction::IronFilterDTGeneratorAction()
    fParticleSource(0)
 {
   fParticleSource = new G4ParticleGun();
-
+  primaryGeneratorMessenger = new IronFilterDTGeneratorMessenger(this);
+  file_number=0;
+  total_event=10;
   //H_Eout = new TH1F("H_Eout","Energy",7500,0,15000);
 
   //H_XYout = new TH2D("H_XYout","XY",4000,-200,200,4000,-200,200); //1500
@@ -110,6 +113,15 @@ IronFilterDTGeneratorAction::~IronFilterDTGeneratorAction()
   //delete H_PZout;
 }
 
+void IronFilterDTGeneratorAction::SetFileNumber(G4int ival)
+{
+  file_number = ival;
+}
+
+void IronFilterDTGeneratorAction::SetTotalEvent(G4int ival)
+{
+  total_event = ival;
+}
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
@@ -130,8 +142,49 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //cout<<eventID<<endl;
   if(eventID ==0)
   {
-  f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57.root");
-  //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom50/CombinedDTFridgelab_geom50.root");
+    if (file_number==0) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron0.root");
+      //total_event=9769680;
+    }
+    if (file_number==1) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron1.root");
+      //total_event=9750726;
+    }
+    if (file_number==2) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron2.root");
+      //total_event=9757091;
+    }
+    if (file_number==3) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron3.root");
+      //total_event=9740807;
+    }
+    if (file_number==4) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron4.root");
+      //total_event=9760979;
+    }
+    if (file_number==5) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron5.root");
+      //total_event=9735096;
+    }
+    if (file_number==6) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron6.root");
+      //total_event=9768908;
+    }
+    if (file_number==7) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron7.root");
+      //total_event=9787698;
+    }
+    if (file_number==8) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron8.root");
+      //total_event=9732835;
+    }
+    if (file_number==9) {
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron9.root");
+      //total_event=9740045;
+    }
+
+
+    //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom50/CombinedDTFridgelab_geom50.root");
   t1 = (TTree*)f->Get("IronFilter");
   nentries = (Int_t)t1->GetEntries();
 
@@ -188,7 +241,8 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //if (eventID==53367-1){//geom52
   //if (eventID==73681-1){//geom55
   //if (eventID==5944-1){//geom55
-  if (eventID==9769680-1){//geom57
+  //if (eventID==9769680-1){//geom57 total_event
+  if (eventID==total_event-1){//geom57_whole
     f->Close();
   }
 

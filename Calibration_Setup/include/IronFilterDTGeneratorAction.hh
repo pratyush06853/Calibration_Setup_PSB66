@@ -61,6 +61,7 @@
 
 class G4ParticleGun;
 class G4Event;
+class IronFilterDTGeneratorMessenger;
 
 class IronFilterDTGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
@@ -73,13 +74,21 @@ public:
   // set methods
   void SetRandomFlag(G4bool value);
 
+  void SetFileNumber(G4int ival);
+  // enter the x_length of the wall
+
+  void SetTotalEvent(G4int ival);
+  // enter the y_length of the wall
+
 private:
+  IronFilterDTGeneratorMessenger* primaryGeneratorMessenger;
+
   G4ParticleGun*  fParticleSource;
   TFile* f;
   TTree *t1;
   Int_t nentries;
   Double_t testE,testx,testy,testz,testxmom,testymom,testzmom,testtime;
-  //Int_t testParticleID;
+  Int_t file_number,total_event;
 
   //TH1F *H_Eout;
   //G4double energy_beam[1000], X_beam[1000],Y_beam[1000],Px_beam[1000],Py_beam[1000],Pz_beam[1000];//857 events so 1000 works
@@ -91,6 +100,9 @@ private:
   //TH1F *H_PZout;
 
   G4double DT_dist(G4double w1, G4double w2, G4double w3, G4double w4);
+
+
+
 
 };
 
