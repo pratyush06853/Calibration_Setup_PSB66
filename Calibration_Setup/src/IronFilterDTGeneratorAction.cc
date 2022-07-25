@@ -143,43 +143,43 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(eventID ==0)
   {
     if (file_number==0) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron0.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron0.root");
       //total_event=9769680;
     }
     if (file_number==1) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron1.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron1.root");
       //total_event=9750726;
     }
     if (file_number==2) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron2.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron2.root");
       //total_event=9757091;
     }
     if (file_number==3) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron3.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron3.root");
       //total_event=9740807;
     }
     if (file_number==4) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron4.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron4.root");
       //total_event=9760979;
     }
     if (file_number==5) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron5.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron5.root");
       //total_event=9735096;
     }
     if (file_number==6) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron6.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron6.root");
       //total_event=9768908;
     }
     if (file_number==7) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron7.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron7.root");
       //total_event=9787698;
     }
     if (file_number==8) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron8.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron8.root");
       //total_event=9732835;
     }
     if (file_number==9) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom57neutron9.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron9.root");
       //total_event=9740045;
     }
 

@@ -47,6 +47,22 @@ class IronFilterDetectorConstruction : public G4VUserDetectorConstruction
   public:
     virtual G4VPhysicalVolume* Construct();
 
+    //for messenger
+    void SetPolyHeight   (G4double);
+    void SetFilterSpacing   (G4double);
+    void SetMultiplierLeadRadius   (G4double);
+    void SetModeratorAluminumRadius   (G4double);
+    void SetMultiplierLeadHeightRear   (G4double);
+    void SetFilterCellSpacing   (G4double);
+    void SetModeratorTitaniumHeight   (G4double);
+    void SetModeratorAluminumHeight   (G4double);
+    void SetMultiplierLeadHeightFront   (G4double);
+    void SetModeratorTitaniumRadius   (G4double);
+    void SetTestX   (G4double);
+    void SetTestY   (G4double);
+    void SetTestZ   (G4double);
+    ////
+
     // get methods
     //
     ////const G4VPhysicalVolume* GetairlayersolidPV() const;
@@ -135,6 +151,11 @@ class IronFilterDetectorConstruction : public G4VUserDetectorConstruction
   private:
     // methods
     //
+
+    //for messenger
+    IronFilterDetectorMessenger* fDetectorMessenger;
+    //
+    
     void DefineMaterials();
     G4VPhysicalVolume* DefineVolumes();
     ////G4VPhysicalVolume* airlayer_solid_PV;
@@ -214,6 +235,22 @@ class IronFilterDetectorConstruction : public G4VUserDetectorConstruction
     G4VPhysicalVolume* shield_cap_iron_PV_1_6;
     G4VPhysicalVolume* DT_solid_PV_1_6;
     G4VPhysicalVolume* Iron_solid_PV_1_6;
+
+    //variables that you can vary using messenger
+    G4double  fPolyHeight;
+    G4double  fFilterSpacing;
+    G4double  fMultiplierLeadRadius;
+    G4double  fModeratorAluminumRadius;
+    G4double  fMultiplierLeadHeightRear;
+    G4double  fFilterCellSpacing;
+    G4double  fModeratorTitaniumHeight;
+    G4double  fModeratorAluminumHeight;
+    G4double  fMultiplierLeadHeightFront;
+    G4double  fModeratorTitaniumRadius;
+    G4double  ftestx;
+    G4double  ftesty;
+    G4double  ftestz;
+
 
 
 
