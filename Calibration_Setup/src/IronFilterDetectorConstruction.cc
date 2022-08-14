@@ -444,6 +444,20 @@ void IronFilterDetectorConstruction::DefineMaterials()
   concrete->AddElement(elCa,0.044);
   concrete->AddElement(elFe,0.014);
 
+  //concrete
+  //G4Material*concrete = new G4Material("concrete",density= 2.3*g/cm3,nComponents=10);
+  G4Material*HDconcrete = new G4Material("HDconcrete",density= 4.81*g/cm3,nComponents=10);
+  HDconcrete->AddElement(elH,0.01);
+  HDconcrete->AddElement(elC,0.001);
+  HDconcrete->AddElement(elO,0.529107);
+  HDconcrete->AddElement(elNa,0.016);
+  HDconcrete->AddElement(elMg,0.002);
+  HDconcrete->AddElement(elAl,0.033872);
+  HDconcrete->AddElement(elSi,0.337021);
+  HDconcrete->AddElement(elK,0.013);
+  HDconcrete->AddElement(elCa,0.044);
+  HDconcrete->AddElement(elFe,0.014);
+
 
   //borated concrete
   G4Material* borated_concrete = new G4Material("borated_concrete",density= 2.32*g/cm3,nComponents=10);
