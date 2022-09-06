@@ -918,9 +918,9 @@ OVCShield_LV->SetVisAttributes(G4VisAttributes::Invisible);
 G4double thickness_Lead=17*cm;
 G4double height_Lead=50*cm;
 //dimension cubical lead
-//G4double cubical_thickness_Lead=25*cm;
-//G4double cubical_height_Lead_up=50*cm;
-//G4double cubical_height_Lead_down=40*cm;
+G4double cubical_thickness_Lead=25*cm;
+G4double cubical_height_Lead_up=50*cm;
+G4double cubical_height_Lead_down=40*cm;
 
 //lead shield
 G4double zposition_OVC= 47*cm;
@@ -929,30 +929,30 @@ G4double ri4[4]= {0.0, 0.0, OVCShield_Radius + OVCShield_Width ,  OVCShield_Radi
 G4double ro4[4]= {OVCShield_Radius + OVCShield_Width + thickness_Lead, OVCShield_Radius + OVCShield_Width + thickness_Lead, OVCShield_Radius + OVCShield_Width + thickness_Lead, OVCShield_Radius + OVCShield_Width + thickness_Lead};
 
 ////G4Tubs* Shielding_Lead_S = new G4Tubs("Shielding_Lead_solid2", OVCShield_Radius + OVCShield_Width, OVCShield_Radius + OVCShield_Width + thickness_Lead, height_Lead/2.0 ,startAngle, spanningAngle/2.0);
-G4Polycone* Shielding_Lead_S = new G4Polycone("Shielding_Lead", startAngle, spanningAngle/2.0, 4, z4, ri4, ro4);
-G4Tubs* hole_S2 = new G4Tubs("hole_solid2", 0.0 , 5.0/2.0*cm, thickness_Lead/2.0 + 2.0*cm  ,startAngle, spanningAngle);
-G4SubtractionSolid* BucketShielding_Lead_S= new G4SubtractionSolid("BucketShielding_Lead_S", Shielding_Lead_S, hole_S2, turnAlongX, G4ThreeVector{0,(OVCShield_Radius + OVCShield_Width) + thickness_Lead/2.0,0});
-G4LogicalVolume*  BucketShielding_Lead_LV= new G4LogicalVolume(BucketShielding_Lead_S, Lead, "BucketShielding_Lead");
+//G4Polycone* Shielding_Lead_S = new G4Polycone("Shielding_Lead", startAngle, spanningAngle/2.0, 4, z4, ri4, ro4);
+//G4Tubs* hole_S2 = new G4Tubs("hole_solid2", 0.0 , 5.0/2.0*cm, thickness_Lead/2.0 + 2.0*cm  ,startAngle, spanningAngle);
+//G4SubtractionSolid* BucketShielding_Lead_S= new G4SubtractionSolid("BucketShielding_Lead_S", Shielding_Lead_S, hole_S2, turnAlongX, G4ThreeVector{0,(OVCShield_Radius + OVCShield_Width) + thickness_Lead/2.0,0});
+//G4LogicalVolume*  BucketShielding_Lead_LV= new G4LogicalVolume(BucketShielding_Lead_S, Lead, "BucketShielding_Lead");
 //BucketShielding_Lead_PV = new G4PVPlacement(NO_ROT, G4ThreeVector{0,0,0}, BucketShielding_Lead_LV, "BucketShielding_Lead",  vacuum_solid_LV, false, 0, true);
 //BucketShielding_Lead_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Blue())));
 
 
-//G4VSolid* Main_10_S = new G4Box("Main_1_solid",(OVCShield_Radius + OVCShield_Width)/2.0+cubical_thickness_Lead, (cubical_height_Lead_up+cubical_height_Lead_down)/2.0, cubical_thickness_Lead/2.0);
-//G4VSolid* hole_10_S = new G4Tubs("hole_1_solid", 0 , 5.0/2.0*cm, cubical_thickness_Lead/2.0,startAngle, spanningAngle);
-//G4SubtractionSolid* BucketShielding_Lead_S= new G4SubtractionSolid("BucketShielding_Lead_S", Main_10_S, hole_10_S, NO_ROT, G4ThreeVector(0., (cubical_height_Lead_up-cubical_height_Lead_down)/2 - DT_Ti_T_location - Insulation_Thickness, 0));
-//G4LogicalVolume* BucketShielding_Lead_LV = new G4LogicalVolume(BucketShielding_Lead_S, Lead, "BucketShielding_Lead");
-//BucketShielding_Lead_PV = new G4PVPlacement(turnAlongX, G4ThreeVector(0.,  OVCShield_Radius + OVCShield_Width + cubical_thickness_Lead/2.0, (cubical_height_Lead_up-cubical_height_Lead_down)/2 - DT_Ti_T_location - Insulation_Thickness), BucketShielding_Lead_LV, "BucketShielding_Lead", vacuum_solid_LV, false, 0, fCheckOverlaps);
-//BucketShielding_Lead_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Blue())));
+G4VSolid* Main_10_S = new G4Box("Main_1_solid",(OVCShield_Radius + OVCShield_Width)/2.0+cubical_thickness_Lead, (cubical_height_Lead_up+cubical_height_Lead_down)/2.0, cubical_thickness_Lead/2.0);
+G4VSolid* hole_10_S = new G4Tubs("hole_1_solid", 0 , 5.0/2.0*cm, cubical_thickness_Lead/2.0,startAngle, spanningAngle);
+G4SubtractionSolid* BucketShielding_Lead_S= new G4SubtractionSolid("BucketShielding_Lead_S", Main_10_S, hole_10_S, NO_ROT, G4ThreeVector(0., (cubical_height_Lead_up-cubical_height_Lead_down)/2 - DT_Ti_T_location - Insulation_Thickness, 0));
+G4LogicalVolume* BucketShielding_Lead_LV = new G4LogicalVolume(BucketShielding_Lead_S, Lead, "BucketShielding_Lead");
+BucketShielding_Lead_PV = new G4PVPlacement(turnAlongX, G4ThreeVector(0.,  OVCShield_Radius + OVCShield_Width + cubical_thickness_Lead/2.0, (cubical_height_Lead_up-cubical_height_Lead_down)/2 - DT_Ti_T_location - Insulation_Thickness), BucketShielding_Lead_LV, "BucketShielding_Lead", vacuum_solid_LV, false, 0, fCheckOverlaps);
+BucketShielding_Lead_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Blue())));
 
 
-//G4double cubical_thickness_Poly =7.0*cm;
+G4double cubical_thickness_Poly =7.0*cm;
 
-//G4VSolid* Main_4_S = new G4Box("Main_4_solid",(OVCShield_Radius + OVCShield_Width)/2.0+cubical_thickness_Lead, (cubical_height_Lead_up+cubical_height_Lead_down)/2.0, cubical_thickness_Poly/2.0);
-//G4VSolid* hole_4_S = new G4Tubs("hole_4_solid", 0 , 5.0/2.0*cm, cubical_thickness_Poly/2.0,startAngle, spanningAngle);
-//G4SubtractionSolid* BucketShielding_Poly_S= new G4SubtractionSolid("BucketShielding_Poly_S", Main_4_S, hole_4_S, NO_ROT, G4ThreeVector(0., (cubical_height_Lead_up-cubical_height_Lead_down)/2 - DT_Ti_T_location - Insulation_Thickness, 0));
-//G4LogicalVolume* BucketShielding_Poly_LV = new G4LogicalVolume(BucketShielding_Poly_S, Polyethylene, "BucketShielding_Poly");
-//new G4PVPlacement(0, G4ThreeVector(0., 0., -cubical_thickness_Lead/2+cubical_thickness_Poly/2.0), BucketShielding_Poly_LV, "BucketShielding_Poly", BucketShielding_Lead_LV, false, 0, fCheckOverlaps);
-//BucketShielding_Poly_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Green())));
+G4VSolid* Main_4_S = new G4Box("Main_4_solid",(OVCShield_Radius + OVCShield_Width)/2.0+cubical_thickness_Lead, (cubical_height_Lead_up+cubical_height_Lead_down)/2.0, cubical_thickness_Poly/2.0);
+G4VSolid* hole_4_S = new G4Tubs("hole_4_solid", 0 , 5.0/2.0*cm, cubical_thickness_Poly/2.0,startAngle, spanningAngle);
+G4SubtractionSolid* BucketShielding_Poly_S= new G4SubtractionSolid("BucketShielding_Poly_S", Main_4_S, hole_4_S, NO_ROT, G4ThreeVector(0., (cubical_height_Lead_up-cubical_height_Lead_down)/2 - DT_Ti_T_location - Insulation_Thickness, 0));
+G4LogicalVolume* BucketShielding_Poly_LV = new G4LogicalVolume(BucketShielding_Poly_S, Polyethylene, "BucketShielding_Poly");
+new G4PVPlacement(0, G4ThreeVector(0., 0., -cubical_thickness_Lead/2+cubical_thickness_Poly/2.0), BucketShielding_Poly_LV, "BucketShielding_Poly", BucketShielding_Lead_LV, false, 0, fCheckOverlaps);
+BucketShielding_Poly_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Green())));
 
 ///////////////***********************////////////////////////
 
