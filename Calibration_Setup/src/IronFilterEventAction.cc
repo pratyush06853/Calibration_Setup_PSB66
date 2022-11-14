@@ -147,9 +147,9 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
                 if_fourth = 1;
             }
         }
-*/          //if( (tmp_volume_name=="helium")&& edep!=0){
-            //    if_helium = 1;
-            //}
+*/          if( (tmp_volume_name=="helium")&& edep!=0){
+                if_helium = 1;
+            }
             if( (tmp_volume_name=="1st_Leadlayer_A"||tmp_volume_name=="1st_FeCap_A")&& tmp_particle_name=="alpha"){
                 if_first = 1;
             }
@@ -173,7 +173,7 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
         // There is coincidence. Fill the wanted tracks
         //if(if_fourth==1 && (if_helium==1 || if_second) ){
         //if(if_helium==1 && (if_fourth == 1||if_second == 1)) {
-        if(if_first == 1||if_second == 1||if_third == 1||if_fourth == 1||if_fifth == 1||if_sixth == 1) {
+        if(if_first == 1||if_second == 1||if_third == 1||if_fourth == 1||if_fifth == 1||if_sixth == 1||if_helium == 1) {
 
             for( size_t i=0; i < stepCollection.size(); ++i ){
               if ((stepCollection[i].GetParticleName()== "alpha"&& (stepCollection[i].GetVolumeName()!="helium") && (stepCollection[i].GetDepositedEnergy()!=0) )
@@ -216,7 +216,7 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
                 //                          <<"  "<<tmp_particle_name
                 //                          <<"  "<<tmp_volume_name
                 //                          <<"  "<<Eki-Ekf
-                //                          <<"   "<<global_time/1000<<G4endl; //time in µs 
+                //                          <<"   "<<global_time/1000<<G4endl; //time in µs
 
                 data_tree->Fill();
               }
