@@ -143,7 +143,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(eventID ==0)
   {
     if (file_number==0) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom66.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom94.root");
       //total_event=9427;
     }
     if (file_number==1) {
