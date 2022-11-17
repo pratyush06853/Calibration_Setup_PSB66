@@ -1041,7 +1041,7 @@ filter_aluminum_PV_3 = new G4PVPlacement(NO_ROT, G4ThreeVector(0., 0., -(Mid_Acr
 shield_cap_iron_PV_3 = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,(Mid_Acrylic_thickness-EJ426_thickness)/2.0), shield_cap_iron_LV, "3rd_FeCap_A", DT_solid_LV_3, false, 0, fCheckOverlaps );
 
 
-
+/*
 //fourth Detector, distance between the helium Cell and the Detector is given
 
 
@@ -1098,6 +1098,8 @@ DT_solid_PV_1_6 = new G4PVPlacement( turnAlongX, G4ThreeVector(0,-(sixth_detecto
 filter_aluminum_PV_1_6 = new G4PVPlacement(NO_ROT, G4ThreeVector(0., 0., -(Mid_Acrylic_thickness-EJ426_thickness)/2.0), filter_aluminum_LV_1, "6th_Leadlayer_B", DT_solid_LV_1_6, false, 0, fCheckOverlaps);
 shield_cap_iron_PV_1_6 = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,(Mid_Acrylic_thickness-EJ426_thickness)/2.0), shield_cap_iron_LV_1, "6th_FeCap_B", DT_solid_LV_1_6, false, 0, fCheckOverlaps );
 
+*/
+
 
 //
 // Visualization attributes
@@ -1138,7 +1140,7 @@ shield_cap_iron_PV_1_6 = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,(Mid_Acryl
   //shielding_lead_LV->SetVisAttributes(G4VisAttributes::Invisible);
 
 
-
+/*
 //fourth detector of type B
 shielding_lead_LV_1->SetVisAttributes(lead_vis);
 
@@ -1150,19 +1152,21 @@ DT_solid_LV_1->SetVisAttributes(silicon_vis);
 
 filter_aluminum_LV_1->SetVisAttributes(EJ4265HD_vis);
 shield_cap_iron_LV_1->SetVisAttributes(EJ4265HD_vis);//Design A
+*/
 
 //1st_Detector of type A
 DT_solid_LV_2->SetVisAttributes(silicon_vis);
 //3rd_Detector of type A
 DT_solid_LV_3->SetVisAttributes(silicon_vis);
 
+/*
 //5th_Detector of type B
 DT_solid_LV_1_5->SetVisAttributes(silicon_vis);
 
 //6th_Detector of type B
 DT_solid_LV_1_6->SetVisAttributes(silicon_vis);
 
-
+*/
   /////shielding_lead_LV->SetVisAttributes(lead_vis);//Design D
   ///////shielding_lead_LV->SetVisAttributes(lead_vis);//Design E
 

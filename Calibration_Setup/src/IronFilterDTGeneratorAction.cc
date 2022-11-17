@@ -144,7 +144,8 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   {
     if (file_number==0) {
       f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom94.root");
-      //total_event=9427;
+      //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom94_1000Pulse/CombinedDTFridgelab_geom94.root");
+      total_event=158680;
     }
     if (file_number==1) {
       f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron1.root");
@@ -242,13 +243,15 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //if (eventID==73681-1){//geom55
   //if (eventID==5944-1){//geom55
   //if (eventID==9769680-1){//geom57 total_event
+  //if (eventID==9427-1){//geom66
+  //if (eventID==158680-1){//geom94
   if (eventID==total_event-1){//geom57_whole
     f->Close();
   }
 
 
   neutronDirection.set(Px,Py,Pz);//negative sign becuase the ROOT file of the filter was incorrectly aligned
-
+  //G4cout<<total_event<<G4endl;
   // set particle parameters
   fParticleSource->SetParticleMomentumDirection(neutronDirection);
   fParticleSource->SetParticleEnergy(Energy);

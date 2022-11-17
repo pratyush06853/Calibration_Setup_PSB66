@@ -159,24 +159,15 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
             if( (tmp_volume_name=="3rd_Leadlayer_A"||tmp_volume_name=="3rd_FeCap_A")&& tmp_particle_name=="alpha"){
                 if_third = 1;
             }
-            if( (tmp_volume_name=="4th_Leadlayer_B"||tmp_volume_name=="4th_FeCap_B")&& tmp_particle_name=="alpha"){
-                if_fourth = 1;
-            }
-            if( (tmp_volume_name=="5th_Leadlayer_B"||tmp_volume_name=="5th_FeCap_B")&& tmp_particle_name=="alpha"){
-                if_fifth = 1;
-            }
-            if( (tmp_volume_name=="6th_Leadlayer_B"||tmp_volume_name=="6th_FeCap_B")&& tmp_particle_name=="alpha"){
-                if_sixth = 1;
-            }
       }
 
         // There is coincidence. Fill the wanted tracks
         //if(if_fourth==1 && (if_helium==1 || if_second) ){
         //if(if_helium==1 && (if_fourth == 1||if_second == 1)) {
-        if(if_first == 1||if_second == 1||if_third == 1||if_fourth == 1||if_fifth == 1||if_sixth == 1||if_helium == 1) {
+        if(if_first == 1||if_second == 1||if_third == 1||if_helium == 1) {
 
             for( size_t i=0; i < stepCollection.size(); ++i ){
-              if ((stepCollection[i].GetParticleName()== "alpha"&& (stepCollection[i].GetVolumeName()!="helium") && (stepCollection[i].GetDepositedEnergy()!=0) )
+              if ((stepCollection[i].GetParticleName()== "alpha"&& ( isdigit(stepCollection[i].GetVolumeName()[0])) && (stepCollection[i].GetDepositedEnergy()!=0) )
               ||(stepCollection[i].GetParticleName()== "neutron" && (stepCollection[i].GetVolumeName()=="helium") )) {
                 eventID = stepCollection[i].GetEventID();
                 trackID = stepCollection[i].GetTrackID();
