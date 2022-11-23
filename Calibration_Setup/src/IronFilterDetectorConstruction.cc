@@ -277,6 +277,19 @@ void IronFilterDetectorConstruction::DefineMaterials()
   silicon->AddElement(NatSi, 1);
 
 
+
+  // Carbon
+  G4Isotope* C12 = new G4Isotope("C12", 6, 12, 12*g/mole);
+  G4Isotope* C13 = new G4Isotope("C13", 6, 13, 13.003355*g/mole);
+
+  G4Element* carbon = new G4Element("carbon_natural", "C",2);
+  carbon->AddIsotope(C12,98.9*perCent);
+  carbon->AddIsotope(C13,1.1*perCent);
+
+  G4Material* diamond = new G4Material("diamond", 3.51*g/cm3, 1, kStateSolid, 296*kelvin);
+  diamond->AddElement(carbon, 1);
+
+
   // Titanium
   G4Isotope* Ti46 = new G4Isotope("Ti46", 22, 46, 45.9526316*g/mole);
   G4Isotope* Ti47 = new G4Isotope("Ti47", 22, 47, 46.9517631*g/mole);
@@ -491,7 +504,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4Material* Aluminum = G4Material::GetMaterial("NatAluminum");
   G4Material* Lead = G4Material::GetMaterial("NatLead");
   G4Material* Silicon = G4Material::GetMaterial("silicon");
-  G4Material* Carbon = G4Material::GetMaterial("NatC");
+  G4Material* Diamond = G4Material::GetMaterial("diamond");
   G4Material* Iron = G4Material::GetMaterial("NatIron");
   G4Material* Scandium = G4Material::GetMaterial("NatScandium");
   G4Material* Fluental = G4Material::GetMaterial("fluental");
@@ -803,7 +816,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 G4VSolid* DilutionUnit_S = new G4Tubs( "DilutionUnit", zeroRadius, DilutionUnit_Radius, (DilutionUnit_Height /2.0), startAngle, spanningAngle);
 //G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Helium, "DilutionUnit" );
 //G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Silicon, "DilutionUnit" );
-G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Carbon, "DilutionUnit" );
+G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Diamond, "DilutionUnit" );
 DilutionUnit_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0),DilutionUnit_LV, "helium", vacuum_solid_LV, false, 0, fCheckOverlaps);
 DilutionUnit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
 
