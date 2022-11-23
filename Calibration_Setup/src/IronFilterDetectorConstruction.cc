@@ -491,6 +491,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4Material* Aluminum = G4Material::GetMaterial("NatAluminum");
   G4Material* Lead = G4Material::GetMaterial("NatLead");
   G4Material* Silicon = G4Material::GetMaterial("silicon");
+  G4Material* Carbon = G4Material::GetMaterial("NatC");
   G4Material* Iron = G4Material::GetMaterial("NatIron");
   G4Material* Scandium = G4Material::GetMaterial("NatScandium");
   G4Material* Fluental = G4Material::GetMaterial("fluental");
@@ -801,7 +802,8 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 //DilutionUnit contains superfluid Helium
 G4VSolid* DilutionUnit_S = new G4Tubs( "DilutionUnit", zeroRadius, DilutionUnit_Radius, (DilutionUnit_Height /2.0), startAngle, spanningAngle);
 //G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Helium, "DilutionUnit" );
-G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Silicon, "DilutionUnit" );
+//G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Silicon, "DilutionUnit" );
+G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Carbon, "DilutionUnit" );
 DilutionUnit_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0),DilutionUnit_LV, "helium", vacuum_solid_LV, false, 0, fCheckOverlaps);
 DilutionUnit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
 
