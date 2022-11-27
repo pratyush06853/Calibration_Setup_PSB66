@@ -307,6 +307,22 @@ void IronFilterDetectorConstruction::DefineMaterials()
   G4Material* titanium = new G4Material("titanium", 4.507*g/cm3,1, kStateSolid, 296*kelvin);
   titanium->AddElement(NatTi, 1);
 
+  //Germanium
+  G4Isotope* Ge70 = new G4Isotope("Ge70", 32, 70, 69.924249*g/mole);
+  G4Isotope* Ge72 = new G4Isotope("Ge72", 32, 72, 46.9517631*g/mole);
+  G4Isotope* Ge73 = new G4Isotope("Ge73", 32, 73, 47.9479463*g/mole);
+  G4Isotope* Ge74 = new G4Isotope("Ge74", 32, 74, 48.9478700*g/mole);
+  G4Isotope* Ge75 = new G4Isotope("Ge75", 32, 75, 49.9447912*g/mole);
+
+  G4Element* NatGe = new G4Element("germanium_natural", "Ti",5);
+  NatGe->AddIsotope(Ge70,20.52*perCent);
+  NatGe->AddIsotope(Ge72,27.45*perCent);
+  NatGe->AddIsotope(Ge73,7.76*perCent);
+  NatGe->AddIsotope(Ge74,36.7*perCent);
+  NatGe->AddIsotope(Ge75,7.57*perCent);
+
+  G4Material* germanium = new G4Material("germanium", 5.323*g/cm3,1, kStateSolid, 296*kelvin);
+  germanium->AddElement(NatGe, 1);
 
 
   //Ni60
@@ -505,6 +521,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4Material* Lead = G4Material::GetMaterial("NatLead");
   G4Material* Silicon = G4Material::GetMaterial("silicon");
   G4Material* Diamond = G4Material::GetMaterial("diamond");
+  G4Material* Germanium = G4Material::GetMaterial("germanium");
   G4Material* Iron = G4Material::GetMaterial("NatIron");
   G4Material* Scandium = G4Material::GetMaterial("NatScandium");
   G4Material* Fluental = G4Material::GetMaterial("fluental");
@@ -816,7 +833,8 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 G4VSolid* DilutionUnit_S = new G4Tubs( "DilutionUnit", zeroRadius, DilutionUnit_Radius, (DilutionUnit_Height /2.0), startAngle, spanningAngle);
 //G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Helium, "DilutionUnit" );
 //G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Silicon, "DilutionUnit" );
-G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Diamond, "DilutionUnit" );
+//G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Diamond, "DilutionUnit" );
+G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Germanium, "DilutionUnit" );
 DilutionUnit_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0),DilutionUnit_LV, "helium", vacuum_solid_LV, false, 0, fCheckOverlaps);
 DilutionUnit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
 
