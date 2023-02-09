@@ -672,14 +672,27 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4double OneKShield_Height = 0.881*m;
 
   //G4double DilutionUnit_Radius = 10.0*cm;
-  G4double DilutionUnit_Radius = 2.0*cm;//5.0*cm;
-  G4double DilutionUnit_Height = 3.0*cm;
+  //G4double DilutionUnit_Radius = 2.0*cm;//5.0*cm;
+  //G4double DilutionUnit_Height = 3.0*cm;
 
-  G4double DilutionChamber_Radius = DilutionUnit_Radius;//10.0*cm
-  G4double DilutionChamber_Height = DilutionUnit_Height + 5.3*cm;//15.3*cm
-  G4double DilutionChamber_Width = 2.0*mm;
-  G4double DilutionChamber_bottomplate_thick = 5*mm;
-  G4double DilutionChamber_upperplate_thick = 3*mm;
+  //G4double DilutionChamber_Radius = DilutionUnit_Radius;//10.0*cm
+  //G4double DilutionChamber_Height = DilutionUnit_Height + 5.3*cm;//15.3*cm
+  //G4double DilutionChamber_Width = 2.0*mm;
+  //G4double DilutionChamber_bottomplate_thick = 5*mm;
+  //G4double DilutionChamber_upperplate_thick = 3*mm;
+
+
+//G4double DilutionUnit_Radius = 10.0*cm;
+G4double DilutionUnit_Radius = 3.0*cm;//5.0*cm;
+G4double DilutionUnit_Height = 5.0*cm;
+
+G4double DilutionChamber_Radius =4.0*cm ;
+G4double DilutionChamber_UpperPart_Radius =15.24/2.0*cm ;
+G4double DilutionChamber_Height = 11.5*cm;
+G4double DilutionChamber_Width = 2.0*mm;
+G4double DilutionChamber_bottomplate_thick = 0.5*cm;
+G4double DilutionChamber_upperplate_thick = (0.95+1.43+1.11)*cm;
+
 
   G4double SeventyKPlate_Radius = 20.0*cm;
   G4double FourKPlate_Radius = 18.3*cm;
@@ -810,10 +823,21 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   reardoor_LV->SetVisAttributes(G4VisAttributes(G4Colour::Brown()));
 
   G4double soil_width=2*m;
-  G4VSolid* LabFloorExtended_solid_S=  new G4Box("LabFloorExtended_solid", 5.0*m, 5.0*m , soil_width/2.0);
+  G4VSolid* LabFloorExtended_solid_S=  new G4Box("LabFloorExtended_solid", 15.0*m, 15.0*m , soil_width/2.0);
   G4LogicalVolume* LabFloorExtended_solid_LV = new G4LogicalVolume(LabFloorExtended_solid_S, Soil, "LabFloorExtended_solid");
   LabFloorExtended_solid_PV = new G4PVPlacement(turnAlong, G4ThreeVector{lab68_wall_x/2.0,-lab68_wall_y/2.0,lab68_wall_z/2.0}-position_of_origin-G4ThreeVector(0., 0., lab68_wall_z/2.0+soil_width/2.0), LabFloorExtended_solid_LV, "LabFloor_extended", vacuum_solid_LV, false, 0, fCheckOverlaps);
   LabFloorExtended_solid_LV->SetVisAttributes(G4VisAttributes(G4Colour::Brown()));
+
+
+
+  G4double extra_concrete_width=2.6*m;
+  G4VSolid* Extra_Concrete_Main_S=  new G4Box("LabFloorExtended_Main", 300.0*cm, 15.0*cm , extra_concrete_width/2.0);
+  G4VSolid* Extra_Concrete_Hole_S=  new G4Box("LabFloorExtended_Hole", 150.0*cm, 15.0*cm+10*cm , extra_concrete_width/2.0+30*cm);
+  G4SubtractionSolid* Extra_Concrete_solid_S= new G4SubtractionSolid("Extra_Concrete_solid", Extra_Concrete_Main_S, Extra_Concrete_Hole_S, NO_ROT, G4ThreeVector(300*cm-140*cm,0., 0.));
+  G4LogicalVolume* Extra_Concrete_solid_LV = new G4LogicalVolume(Extra_Concrete_solid_S, Concrete, "Extra_Concrete_solid");
+  //G4LogicalVolume* Extra_Concrete_solid_LV = new G4LogicalVolume(Extra_Concrete_Main_S, Concrete, "Extra_Concrete_solid");
+  new G4PVPlacement(turnAlong, G4ThreeVector{lab68_wall_x/2.0,-lab68_wall_y/2.0,lab68_wall_z/2.0}-position_of_origin-G4ThreeVector(0., -lab68_wall_y/2.0-lab68_wall_thickness, lab68_wall_z/2.0-extra_concrete_width/2.0), Extra_Concrete_solid_LV, "Extra_Concrete", vacuum_solid_LV, false, 0, fCheckOverlaps);
+  Extra_Concrete_solid_LV->SetVisAttributes(G4VisAttributes(G4Colour::Brown()));
 
 
   //Insulation but this is actually a surface to see the neutrons coming out of the concrete and borated water
@@ -831,24 +855,33 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 ///////////////////////////*******************///////////////////////////////////////////
 //DilutionUnit contains superfluid Helium
 G4VSolid* DilutionUnit_S = new G4Tubs( "DilutionUnit", zeroRadius, DilutionUnit_Radius, (DilutionUnit_Height /2.0), startAngle, spanningAngle);
-//G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Helium, "DilutionUnit" );
+G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Helium, "DilutionUnit" );
 //G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Silicon, "DilutionUnit" );
 //G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Diamond, "DilutionUnit" );
-G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Germanium, "DilutionUnit" );
+//G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Germanium, "DilutionUnit" );
 DilutionUnit_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0),DilutionUnit_LV, "helium", vacuum_solid_LV, false, 0, fCheckOverlaps);
-DilutionUnit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
+//DilutionUnit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
+DilutionUnit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Blue()));
+
+
+G4VSolid* DilutionUnit_Aluminum_S = new G4Tubs( "DilutionUnit", DilutionUnit_Radius, DilutionUnit_Radius+1.0*cm, (DilutionUnit_Height /2.0)+0.5*cm, startAngle, spanningAngle);
+G4LogicalVolume *DilutionUnit_Aluminum_LV = new G4LogicalVolume( DilutionUnit_Aluminum_S, Aluminum, "DilutionAluminumUnit" );
+new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0.5*cm),DilutionUnit_Aluminum_LV, "Aluminum", vacuum_solid_LV, false, 0, fCheckOverlaps);
+DilutionUnit_Aluminum_LV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
 
 
 //Dilution Chamber that holds the superfluid Helium
 G4double nedges[7]=  {-DilutionUnit_Height /2.0-DilutionChamber_bottomplate_thick,
                          -(DilutionUnit_Height /2.0),-(DilutionUnit_Height /2.0),
-                         0.0,
-                         DilutionChamber_Height-DilutionUnit_Height/2.0, DilutionChamber_Height-DilutionUnit_Height/2.0,
-                         DilutionChamber_Height-DilutionUnit_Height/2.0+DilutionChamber_upperplate_thick};
+                         0.0,DilutionUnit_Height/2.0+DilutionChamber_Height,DilutionUnit_Height/2.0+DilutionChamber_Height,
+                         DilutionUnit_Height/2.0+DilutionChamber_Height+DilutionChamber_upperplate_thick};
+
 G4double innerradius[7]= {0.0, 0.0, DilutionChamber_Radius ,DilutionChamber_Radius ,  DilutionChamber_Radius, 0.0, 0.0 };
-G4double outerradius[7]= {DilutionChamber_Radius+DilutionChamber_Width, DilutionChamber_Radius+DilutionChamber_Width, DilutionChamber_Radius+DilutionChamber_Width,
-  DilutionChamber_Radius+DilutionChamber_Width, DilutionChamber_Radius+DilutionChamber_Width, DilutionChamber_Radius+DilutionChamber_Width
-, DilutionChamber_Radius+DilutionChamber_Width};
+G4double outerradius[7]= {DilutionChamber_Radius+DilutionChamber_Width, DilutionChamber_Radius+DilutionChamber_Width,
+                          DilutionChamber_Radius+DilutionChamber_Width,
+                          DilutionChamber_Radius+DilutionChamber_Width, DilutionChamber_Radius+DilutionChamber_Width, DilutionChamber_UpperPart_Radius
+                          , DilutionChamber_UpperPart_Radius};
+
 
 G4ThreeVector position_DilutionChamber = G4ThreeVector(0, 0, 0);
 
@@ -856,6 +889,28 @@ G4Polycone* DilutionChamber_S = new G4Polycone("DilutionChamber", startAngle, sp
 G4LogicalVolume*  DilutionChamber_LV= new G4LogicalVolume(DilutionChamber_S, Copper, "DilutionChamber");
 DilutionChamber_PV = new G4PVPlacement(NO_ROT, position_DilutionChamber , DilutionChamber_LV, "DilutionChamber", vacuum_solid_LV, false, 0, fCheckOverlaps);
 DilutionChamber_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
+
+
+G4double CPD_height=1*mm;
+G4double CPD_Radius=38*mm;
+
+
+//detector
+G4Tubs* CPDS
+  = new G4Tubs("CPDS",0,CPD_Radius,CPD_height/2.0, 0.*deg, 360.*deg);
+G4LogicalVolume* CPDLV
+  = new G4LogicalVolume(CPDS, Silicon
+, "CPDLV",0,0,0);
+ new G4PVPlacement(0,               // no rotation
+                  G4ThreeVector(0,0,CPD_height/2.0+4*cm), // at (x,y,z)
+                  CPDLV,       // its logical volume
+                  "CPD",       // its name
+                  vacuum_solid_LV,         // its mother  volume
+                  false,           // no boolean operations
+                  0,               // copy number
+                  fCheckOverlaps); // checking overlaps
+CPDLV->SetVisAttributes(G4VisAttributes(G4Colour::Yellow()));
+
 
 
 
@@ -969,7 +1024,7 @@ G4double ro4[4]= {OVCShield_Radius + OVCShield_Width + thickness_Lead, OVCShield
 
 
 //dimension cubical lead
-G4double cubical_thickness_Lead=25*cm;
+G4double cubical_thickness_Lead=24*cm;//25*cm
 G4double cubical_side_length_Lead=30*cm;
 G4double cubical_height_Lead_up=60*cm;
 G4double cubical_height_Lead_down=50*cm;
@@ -984,15 +1039,15 @@ BucketShielding_Lead_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Blu
 //BucketShielding_Lead_LV->SetVisAttributes(G4VisAttributes::Invisible);
 
 
-G4double cubical_thickness_Poly =2.0*cm;
+//G4double cubical_thickness_Poly =2.0*cm;
 
-G4VSolid* Main_4_S = new G4Box("Main_4_solid",(OVCShield_Radius + OVCShield_Width)/2.0+cubical_side_length_Lead, (cubical_height_Lead_up+cubical_height_Lead_down)/2.0, cubical_thickness_Poly/2.0);
-G4VSolid* hole_4_S = new G4Tubs("hole_4_solid", 0 , 5.0/2.0*cm, cubical_thickness_Poly/2.0,startAngle, spanningAngle);
+//G4VSolid* Main_4_S = new G4Box("Main_4_solid",(OVCShield_Radius + OVCShield_Width)/2.0+cubical_side_length_Lead, (cubical_height_Lead_up+cubical_height_Lead_down)/2.0, cubical_thickness_Poly/2.0);
+//G4VSolid* hole_4_S = new G4Tubs("hole_4_solid", 0 , 5.0/2.0*cm, cubical_thickness_Poly/2.0,startAngle, spanningAngle);
 
-G4SubtractionSolid* BucketShielding_Poly_S= new G4SubtractionSolid("BucketShielding_Poly_S", Main_4_S, hole_4_S, NO_ROT, G4ThreeVector(0., (cubical_height_Lead_up-cubical_height_Lead_down)/2 - DT_Ti_T_location - Insulation_Thickness, 0));
-G4LogicalVolume* BucketShielding_Poly_LV = new G4LogicalVolume(BucketShielding_Poly_S, Polyethylene, "BucketShielding_Poly");
-new G4PVPlacement(0, G4ThreeVector(0., 0., -cubical_thickness_Lead/2+cubical_thickness_Poly/2.0), BucketShielding_Poly_LV, "BucketShielding_Poly", BucketShielding_Lead_LV, false, 0, fCheckOverlaps);
-BucketShielding_Poly_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Green())));
+//G4SubtractionSolid* BucketShielding_Poly_S= new G4SubtractionSolid("BucketShielding_Poly_S", Main_4_S, hole_4_S, NO_ROT, G4ThreeVector(0., (cubical_height_Lead_up-cubical_height_Lead_down)/2 - DT_Ti_T_location - Insulation_Thickness, 0));
+//G4LogicalVolume* BucketShielding_Poly_LV = new G4LogicalVolume(BucketShielding_Poly_S, Polyethylene, "BucketShielding_Poly");
+//new G4PVPlacement(0, G4ThreeVector(0., 0., -cubical_thickness_Lead/2+cubical_thickness_Poly/2.0), BucketShielding_Poly_LV, "BucketShielding_Poly", BucketShielding_Lead_LV, false, 0, fCheckOverlaps);
+//BucketShielding_Poly_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Green())));
 
 
 
