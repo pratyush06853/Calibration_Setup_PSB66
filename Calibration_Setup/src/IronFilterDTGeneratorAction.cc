@@ -143,11 +143,12 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(eventID ==0)
   {
     if (file_number==0) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom101_NoScneutron.root");
+      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom101_RotatedSc_1000Pulseneutron.root");
       //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom94_1000Pulse/CombinedDTFridgelab_geom94.root");
       //total_event=158680;
       //total_event=381002;
-      total_event=380560;
+      //total_event=380560;
+      total_event=404522;
     }
     if (file_number==1) {
       f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron1.root");
