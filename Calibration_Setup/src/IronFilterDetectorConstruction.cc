@@ -571,7 +571,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   ///////////***********lab room************//////////////////
   //G4double colimator_length=26.0*cm;
   //G4double colimator_length=30.0*cm;
-  G4double colimator_length=35.0*cm;
+  G4double colimator_length=33.0*cm;
   G4double fFilterCellSpacing= 50.0*cm+36.0*cm;//50.0*cm+26.0*cm;
 
   G4double Side_shield_thickness=20.0*cm;
@@ -642,7 +642,8 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4double lab68_frontdoor_x_coordinate = lab68_wall_x/2 -lab68_frontdoor_glass_width/2.0-1.2*m;
   G4double lab68_reardoor_x_coordinate = -lab68_wall_x/2.0 +lab68_reardoor_width/2.0+2.613*m;
 
-  G4ThreeVector position_of_origin = {2.721*m, -2.703*m, 1.4547*m}; //with repect to the outer upper left corner of the room(Doug's corner)
+G4ThreeVector position_of_origin = {3.221*m, -2.603*m, 1.4547*m};
+
 
   G4ThreeVector xyposition_of_origin = {2.721*m, -2.703*m, 0};
 
