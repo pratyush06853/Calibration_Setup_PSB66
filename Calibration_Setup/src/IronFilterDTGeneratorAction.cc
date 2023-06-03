@@ -143,13 +143,14 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(eventID ==0)
   {
     if (file_number==0) {
-      f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/CombinedDTFridgelab_geom204_RotatedSc_nearWalls_1000Pulseneutron.root ");
+      f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_neutron.root");
       //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom94_1000Pulse/CombinedDTFridgelab_geom94.root");
       //total_event=158680;
       //total_event=381002;
       //total_event=380560;
       //total_event=404522;
-      total_event=413092;
+      //total_event=413092;
+      total_event=214406;
     }
     if (file_number==1) {
       f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron1.root");
@@ -270,7 +271,6 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //fParticleSource->SetParticlePosition(G4ThreeVector(X, Z, Y));//please be careful about the coordinate in this case its rotated
   fParticleSource->SetParticlePosition(G4ThreeVector(X, Y, Z));
   fParticleSource->GeneratePrimaryVertex(anEvent);
-
 
 
 }
