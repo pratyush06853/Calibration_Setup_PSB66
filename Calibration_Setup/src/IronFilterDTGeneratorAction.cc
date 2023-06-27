@@ -144,7 +144,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   {
     if (file_number==0) {
       //f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_neutron.root");
-      f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_neutron.root");
+      f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_gamma.root");
       //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom94_1000Pulse/CombinedDTFridgelab_geom94.root");
       //total_event=158680;
       //total_event=381002;
@@ -272,6 +272,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   // Set source position
   //fParticleSource->SetParticlePosition(G4ThreeVector(X, Z, Y));//please be careful about the coordinate in this case its rotated
   fParticleSource->SetParticlePosition(G4ThreeVector(X, Y, Z));
+  G4cout<<X<<"  "<<Y<<"  "<<Z<<G4endl;
   fParticleSource->GeneratePrimaryVertex(anEvent);
 
 
