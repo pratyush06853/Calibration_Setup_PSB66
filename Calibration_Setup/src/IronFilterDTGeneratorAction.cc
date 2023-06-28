@@ -143,16 +143,17 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(eventID ==0)
   {
     if (file_number==0) {
-      //f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_neutron.root");
-      f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_gamma.root");
+      f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_neutron.root");
+      //f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_gamma.root");
       //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom94_1000Pulse/CombinedDTFridgelab_geom94.root");
+      //f = TFile::Open("/Users/pratyushpatel/IronFilter/Calibration_Setup_PSB66/Calibration_Setup_PSB66/Input/CombinedFinalDT_Design_neutron.root");
       //total_event=158680;
       //total_event=381002;
       //total_event=380560;
       //total_event=404522;
       //total_event=413092;
-      //total_event=214406;//neutron
-      total_event=51769324;//gamma
+      total_event=214406;//neutron
+      //total_event=51769324;//gamma
     }
     if (file_number==1) {
       f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron1.root");
@@ -209,8 +210,8 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 }
 
   G4double Energy,X,Y,Z,Px,Py,Pz,angle,ParticleID,T;
-  G4String particlename="gamma";
-  //G4String particlename="neutron";
+  //G4String particlename="gamma";
+  G4String particlename="neutron";
   G4ThreeVector neutronDirection;
 
 
@@ -253,6 +254,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   //if (eventID==9427-1){//geom66
   //if (eventID==158680-1){//geom94
   if (eventID==total_event-1){//geom57_whole
+    G4cout<<"file is being closed"<<G4endl;
     f->Close();
   }
 
@@ -272,7 +274,7 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   // Set source position
   //fParticleSource->SetParticlePosition(G4ThreeVector(X, Z, Y));//please be careful about the coordinate in this case its rotated
   fParticleSource->SetParticlePosition(G4ThreeVector(X, Y, Z));
-  G4cout<<X<<"  "<<Y<<"  "<<Z<<G4endl;
+  //G4cout<<X<<"  "<<Y<<"  "<<Z<<G4endl;
   fParticleSource->GeneratePrimaryVertex(anEvent);
 
 
