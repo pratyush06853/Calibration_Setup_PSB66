@@ -171,7 +171,6 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
               if ((stepCollection[i].GetParticleName()== "alpha"&& ( isdigit(stepCollection[i].GetVolumeName()[0])) && (stepCollection[i].GetDepositedEnergy()!=0) )
               ||(stepCollection[i].GetParticleName()== "neutron" && (stepCollection[i].GetVolumeName()=="helium") )) {
               //if(   (stepCollection[i].GetParticleName()== "gamma" || stepCollection[i].GetParticleName()== "neutron" )  && (stepCollection[i].GetVolumeName()=="helium") && (stepCollection[i].GetEki() != stepCollection[i].GetEkf() ) ) {
-              //if(   (stepCollection[i].GetParticleName()== "gamma" || stepCollection[i].GetParticleName()== "neutron" )  && (stepCollection[i].GetVolumeName()=="helium") && (stepCollection[i].GetEki() != stepCollection[i].GetEkf() ) ) {
               //if(1) {
                 eventID = stepCollection[i].GetEventID();
                 trackID = stepCollection[i].GetTrackID();
