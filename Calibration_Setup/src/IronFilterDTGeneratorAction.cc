@@ -143,8 +143,8 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   if(eventID ==0)
   {
     if (file_number==0) {
-      //f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_neutron.root");
-      f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_gamma.root");
+      f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_neutron.root");
+      //f = TFile::Open("/scratch/penningb_root/penningb2/shared_data/TESsims/Analysis_File/FinalDT_Design_neutron_gamma/Other5000/CombinedFinalDT_Design_gamma.root");
       //f = TFile::Open("/Volumes/GoogleDrive/My Drive/GraduateWork/Safety_DT/MergedFiles/geom94_1000Pulse/CombinedDTFridgelab_geom94.root");
       //f = TFile::Open("/Users/pratyushpatel/IronFilter/Calibration_Setup_PSB66/Calibration_Setup_PSB66/Input/CombinedFinalDT_Design_neutron.root");
       //total_event=158680;
@@ -152,8 +152,8 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       //total_event=380560;
       //total_event=404522;
       //total_event=413092;
-      //total_event=214406;//neutron
-      total_event=51769324;//gamma
+      total_event=214406;//neutron
+      //total_event=51769324;//gamma
     }
     if (file_number==1) {
       f = TFile::Open("/home/pp59a/Calibration_Setup/Calibration_Setup_PSB66/Input/Geom57/CombinedDTFridgelab_geom57neutron1.root");
@@ -210,8 +210,8 @@ void IronFilterDTGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 }
 
   G4double Energy,X,Y,Z,Px,Py,Pz,angle,ParticleID,T;
-  G4String particlename="gamma";
-  //G4String particlename="neutron";
+  //G4String particlename="gamma";
+  G4String particlename="neutron";
   G4ThreeVector neutronDirection;
 
 
