@@ -687,7 +687,7 @@ G4ThreeVector position_of_origin = {3.221*m, -2.603*m, 1.4547*m};
 G4double DilutionUnit_Radius = 3.0*cm;//5.0*cm;
 G4double DilutionUnit_Height = 5.0*cm;
 
-G4double DilutionChamber_Radius =4.0*cm ;
+G4double DilutionChamber_Radius =5.0*cm ;//4.0*cm
 G4double DilutionChamber_UpperPart_Radius =15.24/2.0*cm ;
 G4double DilutionChamber_Height = 11.5*cm;
 G4double DilutionChamber_Width = 2.0*mm;
@@ -865,7 +865,7 @@ DilutionUnit_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0),DilutionUnit_L
 DilutionUnit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Blue()));
 
 
-G4VSolid* DilutionUnit_Aluminum_S = new G4Tubs( "DilutionUnit", DilutionUnit_Radius, DilutionUnit_Radius+1.0*cm, (DilutionUnit_Height /2.0)+0.5*cm, startAngle, spanningAngle);
+G4VSolid* DilutionUnit_Aluminum_S = new G4Tubs( "DilutionUnit", DilutionUnit_Radius, DilutionUnit_Radius+2.0*cm, (DilutionUnit_Height /2.0)+0.5*cm, startAngle, spanningAngle);
 G4LogicalVolume *DilutionUnit_Aluminum_LV = new G4LogicalVolume( DilutionUnit_Aluminum_S, Aluminum, "DilutionAluminumUnit" );
 new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0.5*cm),DilutionUnit_Aluminum_LV, "Aluminum", vacuum_solid_LV, false, 0, fCheckOverlaps);
 DilutionUnit_Aluminum_LV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
@@ -998,7 +998,7 @@ G4Polycone* OVCShield_S = new G4Polycone("OVCShield", startAngle, spanningAngle,
 G4LogicalVolume*  OVCShield_LV= new G4LogicalVolume(OVCShield_S, Aluminum, "OVCShield");
 OVCShield_PV = new G4PVPlacement(NO_ROT, position_OVCShield , OVCShield_LV, "OVCShield", vacuum_solid_LV, false, 0, fCheckOverlaps);
 OVCShield_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Cyan())));
-OVCShield_LV->SetVisAttributes(G4VisAttributes::Invisible);
+//OVCShield_LV->SetVisAttributes(G4VisAttributes::Invisible);
 
 
 // Lead shield around the OVC to block the gamma:
